@@ -1,0 +1,5 @@
+{"ts":1341899118977,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"{\n    \"name\": \"daylog\",\n    \"version\": \"0.0.1\",\n    \"main\": \"daylog.js\",\n    \"private\": true,\n\n    \"plugin\": {\n        \"consumes\": [\"http\", \"auth\"]\n    }\n}"]],"start1":0,"start2":0,"length1":0,"length2":155}]],"length":155}
+{"contributors":[],"silentsave":false,"ts":1341899124107,"patch":[[{"diffs":[[0,": {\n"],[-1,"        \"consumes\": [\"http\", \"auth\"]\n"],[0,"    "]],"start1":107,"start2":107,"length1":45,"length2":8}]],"length":118,"saved":false}
+{"ts":1341899143514,"patch":[[{"diffs":[[0,"ugin\": {"],[-1,"\n    "],[0,"}\n}"]],"start1":102,"start2":102,"length1":16,"length2":11}]],"length":113,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1341901302423,"patch":[[{"diffs":[[0,"ugin\": {"],[1,"\n        consumes : [\"oauth\"]\n    "],[0,"}\n}"]],"start1":102,"start2":102,"length1":11,"length2":45}]],"length":147,"saved":false}
+{"ts":1341901318267,"patch":[[{"diffs":[[0,"    "],[1,"\""],[0,"consumes"],[1,"\""],[0," : ["]],"start1":115,"start2":115,"length1":16,"length2":18}]],"length":149,"saved":false}

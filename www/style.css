@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial;
+}
+
+body {
+    margin: 80px 0 80px 120px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 48px;
+    font-weight: 100;
+    color: #333;
+}
+
+#githubLogin {
+    line-height: 17px;
+    margin-left: -16px;
+}
+
+#githubLogin img {
+    float: left;
+    margin-right: 10px;
+}
+
+#githubLogin a {
+    color: #999;
+    -webkit-transition: color 0.2s linear;
+    -moz-transition: color 0.2s linear;
+}
+
+#githubLogin a:hover {
+    color: #777;
+}
+
+a {
+    text-decoration: none;
+    color: #777;
+}
+
+a:hover {
+    color: #333;
+}

@@ -1,0 +1,10 @@
+{
+    "name": "oauth",
+    "version": "0.0.1",
+    "main": "oauth.js",
+    "private": true,
+
+    "plugin": {
+        "provides": ["oauth"]
+    }
+}

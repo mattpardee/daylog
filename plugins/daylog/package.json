@@ -1,0 +1,10 @@
+{
+    "name": "daylog",
+    "version": "0.0.1",
+    "main": "daylog.js",
+    "private": true,
+
+    "plugin": {
+        "consumes" : ["oauth"]
+    }
+}
