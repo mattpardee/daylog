@@ -1,0 +1,74 @@
+/**
+ * Your extension for Cloud9 IDE!
+ * 
+ * Inserts a context menu item under the "Edit" menu, which, when
+ * clicked, displays a simple window with a "Close" button.
+ */
+define(function(require, exports, module) {
+
+var ext = require("core/ext");
+
+var menus = require("ext/menus/menus");
+var commands = require("ext/commands/commands");
+var panels = require("ext/panels/panels");
+var markup = require("text!./<%- extension_name %>.xml");
+
+module.exports = ext.register("ext/<%- extension_name %>/<%- extension_name %>", {
+    name         : "<%- extension_name %>",
+    dev          : "You",
+    alone        : true,
+    deps         : [],
+    type         : ext.GENERAL,
+    markup       : markup,
+    defaultWidth : 130,
+
+    nodes : [],
+
+    init : function(){
+        this.panel = window["myPanel<%- extension_name %>"];
+        this.nodes.push(this.panel);
+    },
+
+    show : function(e) {
+        if (!this.panel || !this.panel.visible) {
+            panels.activate(this);
+            this.enable();
+        }
+        else {
+            panels.deactivate(null, true);
+        }
+
+        return false;
+    },
+
+    hook : function(){
+        this.markupInsertionPoint = colLeft;
+
+        panels.register(this, {
+            position : 6000,
+            caption: "My Panel",
+            "class": "myPanel<%- extension_name %>_class"
+        });
+    },
+
+    enable : function(){
+        this.nodes.each(function(item){
+            item.enable();
+        });
+    },
+
+    disable : function(){
+        this.nodes.each(function(item){
+            item.disable();
+        });
+    },
+
+    destroy : function(){
+        this.nodes.each(function(item){
+            item.destroy(true, true);
+        });
+        this.nodes = [];
+    }
+});
+
+});

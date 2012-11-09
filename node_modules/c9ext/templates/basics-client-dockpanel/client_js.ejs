@@ -1,0 +1,112 @@
+/**
+ * Your extension for Cloud9 IDE!
+ * 
+ * Inserts a context menu item under the "Edit" menu, which, when
+ * clicked, displays a simple window with a "Close" button.
+ */
+define(function(require, exports, module) {
+
+var ext = require("core/ext");
+
+var menus = require("ext/menus/menus");
+var commands = require("ext/commands/commands");
+var dock = require("ext/dockpanel/dockpanel");
+var markup = require("text!./<%- extension_name %>.xml");
+
+// the name of your extension; very important, and used in many places below
+var name = "ext/<%- extension_name %>/<%- extension_name %>"; 
+
+module.exports = ext.register("ext/<%- extension_name %>/<%- extension_name %>", {
+    name         : "<%- extension_name %>",
+    dev          : "You",
+    alone        : true,
+    deps         : [],
+    type         : ext.GENERAL,
+    markup       : markup,
+    defaultWidth : 130,
+
+    nodes : [],
+
+    hook : function() {
+        var _self = this;
+
+        // an instance of require("ext/dockpanel/dockpanel")
+        dock.addDockable({
+            expanded : -1,
+            width    : 900,
+            sections : [
+                {
+                    width : 660,
+                    height: 65,
+                    buttons : [
+                        {
+                            caption: "My Text Input",
+                            ext : [name, "textBoxInput"],
+                            hidden : true
+                        }
+                    ]
+                },
+                {
+                    width : 380,
+                    height : 300,
+                    buttons : [
+                        {
+                            caption: "My Text Output",
+                            ext : [name, "textBoxOutput"],
+                            hidden : true
+                        }
+                    ]
+                }
+            ]
+        });
+
+        dock.register(name, "textBoxInput", {
+            menu : "Show Text Input",
+            primary : {
+                backgroundImage: "http://spintech.pt/img/img_button_number2.jpg",
+                defaultState: { x: 0, y: 0 },
+                activeState: { x: 0, y: 0 }
+            }
+        }, function() {
+            ext.initExtension(_self);
+            return textBoxInput;
+        });
+
+        dock.register(name, "textBoxOutput", {
+            menu : "Show Text Output",
+            primary : {
+                backgroundImage: "http://spintech.pt/img/img_button_number3.jpg",
+                defaultState: { x: 0, y: 0 },
+                activeState: { x: 0, y: 0 }
+            }
+        }, function() {
+            ext.initExtension(_self);
+            return textBoxOutput;
+        });
+    },
+
+    init : function() {
+
+    },
+
+    enable : function(){
+        this.nodes.each(function(item){
+            item.enable();
+        });
+    },
+
+    disable : function(){
+        this.nodes.each(function(item){
+            item.disable();
+        });
+    },
+
+    destroy : function(){
+        this.nodes.each(function(item){
+            item.destroy(true, true);
+        });
+        this.nodes = [];
+    }
+});
+
+});

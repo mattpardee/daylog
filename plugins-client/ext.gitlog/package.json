@@ -1,0 +1,14 @@
+{
+    "name": "ext.gitlog",
+    "version": "0.0.1",
+    "main": "gitlog-ext.js",
+    "private": true,
+    "plugin": {
+        "provides": [
+            "ext.gitlog"
+        ],
+        "consumes": [
+            "client-plugins"
+        ]
+    }
+}

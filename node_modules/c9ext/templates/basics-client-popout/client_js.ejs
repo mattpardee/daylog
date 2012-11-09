@@ -1,0 +1,104 @@
+/**
+ * Your extension for Cloud9 IDE!
+ * 
+ * Defines a new command, which, when entered, pops out a new panel
+ * at the right of the IDE.
+ */
+define(function(require, exports, module) {
+
+var ext = require("core/ext");
+
+var commands = require("ext/commands/commands");
+var markup = require("text!./testerpanel.xml");
+
+var BAR_WIDTH = 200;
+
+module.exports = ext.register("ext/<%- extension_name %>/<%- extension_name %>", {
+    name         : "<%- extension_name %>",
+    dev          : "You",
+    alone        : true,
+    deps         : [],
+    type         : ext.GENERAL,
+    markup       : markup,
+
+    nodes : [],
+
+    hook: function() {
+        var _self = this;
+
+        // add a command to launch the panel
+        commands.addCommand({
+            name: "<%- extension_name %>",
+            hint: "Launch my panel.",
+            isAvailable: function(editor) {
+                return editor && editor.path == "ext/code/code";
+            },
+            exec: function () { 
+                if (_self.panel === undefined)
+                    ext.initExtension(_self);
+                _self.toggle(); 
+            }
+        });
+    },
+    
+    init : function(){
+        var _self = this;
+
+        this.nodes.push(this.panel = new apf.bar({
+                id: "myPanel",
+                visible: false,
+                top: 6,
+                bottom: 0,
+                right: 0,
+                width: BAR_WIDTH,
+                height: "100%"
+            })
+        );
+
+        ide.addEventListener("init.ext/code/code", function(e) {
+            _self.panel = e.ext.amlEditor.parentNode.appendChild(_self.panel);
+            myPanel.appendChild("<%- extension_name %>");
+        });
+    },
+
+    toggle : function() {
+        // control when to show and hide the panel
+        if (this.panel.visible)
+            this.hide();
+        else
+            this.show();
+    },
+
+    show: function() {
+        // code.amlEditor refers to the Ace instance; shift it over
+        // the exact amount of pixels equivalent to the panel's with
+        code.amlEditor.$ext.style.right = BAR_WIDTH + "px";
+        this.panel.show();
+    },
+
+    hide: function() {
+        code.amlEditor.$ext.style.right = "0";
+        this.panel.hide();
+    },
+
+    enable : function(){
+        this.nodes.each(function(item){
+            item.enable();
+        });
+    },
+
+    disable : function(){
+        this.nodes.each(function(item){
+            item.disable();
+        });
+    },
+
+    destroy : function(){
+        this.nodes.each(function(item){
+            item.destroy(true, true);
+        });
+        this.nodes = [];
+    }
+});
+
+});

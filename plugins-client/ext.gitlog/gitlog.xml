@@ -1,0 +1,45 @@
+<a:application xmlns:a="http://ajax.org/2005/aml">
+    <a:model id="mdlGitLog" />
+    <a:window
+        id        = "winGitLog"
+        title     = "Git Log"
+        visible   = "false"
+        center    = "true"
+        modal     = "false"
+        buttons   = "close"
+        skin      = "bk-window"
+        kbclose   = "true"
+        width     = "500"
+        height    = "300"
+        >
+            <a:vbox padding="10" anchors="0 0 0 0">
+                <a:datagrid id = "dgGitLog"
+                    model      = "mdlGitLog"
+                    flex       = "1"
+                    margin     = "10 10 10 10"
+                    class      = "noscrollbar"
+                    scrollbar  = "sbShared 20 2 2"
+                    autoselect = "false"
+                    each       = "[log]"
+                    empty-message = "No model data">
+                        <a:column width="18%" value="[@hash]" caption="Hash" />
+                        <a:column width="20%" value="[@author]" caption="Author" />
+                        <a:column width="20%" value="[@date]" caption="Date" />
+                        <a:column width="42%" value="[@message]" caption="Message" />
+                </a:datagrid>
+                <a:hbox pack="end" padding="7" edge="10">
+                    <a:button
+                     caption = "Reload Git Log"
+                     class   = "btn-green"
+                     skin    = "btn-default-css3"
+                     onclick = "require('core/ext').extLut['ext/gitlog/gitlog'].getGitLog();"
+                    />
+                    <a:button
+                     caption = "Close"
+                     skin    = "btn-default-css3"
+                     onclick = "winGitLog.hide()"
+                    />
+                </a:hbox>
+            </a:vbox>
+    </a:window>
+</a:application>

@@ -1,0 +1,29 @@
+<a:application xmlns:a="http://ajax.org/2005/aml">
+    <a:model id="mdl<%- extension_name %>">
+        <data>
+            <user name="Garen" date="2009-11-12" deleted="0"></user>
+            <user name="Glengarry Glenn Ross" date="2009-11-11" deleted="0"></user>
+            <user name="Max" date="2009-11-10" deleted="0"></user>
+        </data>
+    </a:model>
+    <a:window id="myPanel<%- extension_name %>"
+      flex     = "1"
+      skin     = "fm-window"
+      modal    = "false"
+      buttons  = "close"
+      optimize = "true">
+        <a:vsplitbox anchors="0 0 0 0" minheight="1">
+            <a:list
+                id            = "lst<%- extension_name %>"
+                model         = "mdl<%- extension_name %>"
+                border        = "0"
+                each          = "[user]"
+                caption       = "[@name]"
+                flex          = "1"
+                skin          = "tree"
+                autoselect    = "false"
+                empty-message = "no users">
+            </a:list>
+        </a:vsplitbox>
+    </a:window>
+</a:application>
