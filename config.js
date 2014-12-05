@@ -1,5 +1,5 @@
 module.exports = [
-    { packagePath: "oauth", appId: "", appSecret: ""},
+    { packagePath: "./plugins/oauth", appId: "", appSecret: ""},
     "./plugins/daylog",
     "./plugins/db",
     "./plugins/auth"
